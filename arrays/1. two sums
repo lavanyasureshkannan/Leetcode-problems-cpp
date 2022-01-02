@@ -1,3 +1,5 @@
+1. APPROACH ONE
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -11,4 +13,29 @@ public:
         }
         return result;
     }
+};
+
+2. APPROACH 2 USING HASHMAPS
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map <int,int> hmap;
+        vector<int> result;
+        for(int i = 0;i< nums.size();i++){
+            int search = target - nums[i];
+            if (hmap.find(search) != hmap.end()){
+                result.push_back(i);
+                result.push_back(hmap[search]);
+                return result;
+            }
+            else{
+                hmap[nums[i]] = i;
+                
+            }
+                     }
+                     return result;
+                     }
+        
+
 };
