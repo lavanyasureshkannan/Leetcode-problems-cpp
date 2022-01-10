@@ -1,0 +1,33 @@
+206. Reverse Linked List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *prev = NULL;
+        // 0 1 2 3 
+        while(head != NULL){
+            ListNode *next_node = head->next;
+            // 0->1->2->3
+            // head = 1 
+            head->next = prev;
+            // 0<-1->2->3
+            prev = head;
+            // prev = 1
+            head = next_node;
+            // head = 2
+            // as loop continues till head is not equal to null
+        }
+        return prev;
+        
+    }
+};
