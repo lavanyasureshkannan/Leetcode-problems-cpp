@@ -1,0 +1,35 @@
+234. Palindrome Linked List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        // 1. create an array out of the linked list.
+    vector<ListNode*>a;
+        while (head){
+            a.push_back(head);
+            head = head-> next;
+        }
+        //2.use two pointers from left and right to check if its equal
+        int j = a.size() - 1;
+        for (int i =0; i <a.size()/2; i++){
+            if (a[i]->val != a[j]->val)
+                return false;
+            j--;
+            }
+        return true;
+        
+         
+    }
+    
+};
+
