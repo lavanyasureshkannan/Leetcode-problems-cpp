@@ -1,0 +1,100 @@
+15. 3Sum
+
+//APPROACH 1 - BRUTE- FORCE
+// TIME COMPLEXITY - O(n^3);
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        set<vector<int>>result;
+        for (int i = 0; i < nums.size(); i++){
+            for (int j= i+1; j<nums.size();j++){
+                for (int k = j+1; k<nums.size(); k++){
+                    if(nums[i] + nums[j] + nums[k] == 0){
+                        vector<int> a = {nums[i],nums[j], nums[k]};
+                        sort(a.begin(),a.end());
+                        result.insert(a);
+                    }
+                }                
+            }
+        }
+        vector<vector<int>> result_main(result.begin(),result.end());
+        return result_main;
+        
+        
+    }
+};
+
+//APPROACH 2 
+// TIME COMPLEXITY - O(n^2 log n) one for loop, one while loop, insert operaation(m)
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> result;
+        set<vector<int>>a;
+        int n = nums.size();
+        if (n<2)
+            return result;
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i< n - 2; i++){
+            int j = i+1;
+            int k = n - 1;
+            while(j < k){
+                int sum = nums[i] + nums[j] + nums[k];
+                if(sum == 0)
+                    a.insert({nums[i], nums[j++], nums[k--]});
+                else if (sum < 0)
+                    j ++;
+                else 
+                    k--;
+                    
+            }
+        }
+        for(auto &ans : a){
+            result.push_back(ans);
+        }
+        return result;
+        
+        
+        
+    }
+};
+
+APPROACH- 3
+
+// TIME COMPLEXITY - O(n^2) one for loop, one while loop
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> result;
+        int n = nums.size();
+        if (n<2)
+            return {};
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i< n - 2; i++){
+            if(i ==0 || nums[i] != nums[i-1]){
+                int j = i+1;
+                int k = n-1;
+                while(j<k){
+                    int sum = nums[i] + nums[j] + nums[k];
+                    if(sum == 0){
+                        result.push_back({nums[i], nums[j], nums[k]});
+                    
+                        while(j<k && nums[j]==nums[j+1]) j++;
+                        while(j<k && nums[j]==nums[k-1]) k--;
+                        j++;
+                        k--;
+                    }
+                    else if (sum<0)
+                        j++;
+                    else
+                        k--;
+                }
+                
+            }
+        }
+            return result;
+
+        
+        
+    }
+};
