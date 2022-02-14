@@ -1,0 +1,35 @@
+121. Best Time to Buy and Sell Stock
+ 
+#brute force approach
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+       int large_diff = 0;
+        int size = prices.size();
+        for(int buyd = 0; buyd < size; buyd++){
+            for(int selld = buyd + 1 ; selld < size; selld++){
+                int stockdiff = prices[selld] - prices[buyd];
+                if (stockdiff > large_diff){
+                    large_diff = stockdiff;
+                }
+            }
+        }
+        return large_diff;
+    }
+};
+
+#general one way approach
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int min_prof  = INT_MAX;
+        int max_prof = 0;
+        for(int i = 0; i < n ; i++){
+            min_prof = min(prices[i], min_prof);
+            max_prof = max(max_prof, prices[i] - min_prof);
+        }
+        
+        return max_prof;
+    }
+};
