@@ -1,0 +1,47 @@
+// class Solution {
+// public:
+//     int numIslands(vector<vector<char>>& grid) {
+     
+//         // how to traverse through 2d grid
+        
+//         // dfs or bfs
+        
+//         // recursive call 
+//     }
+// };
+
+
+class Solution{
+    public:
+    
+        void callBFS(vector<vector<char>>& grid, int i, int j){
+            // check for boundary conditions
+            if(i<0 || j<0 || i>=grid.size() || j>=grid[i].size() || grid[i][j] == '0')
+                return;
+            // if you find '1' then increment the count change every '1' and its adjacent to '0'
+            grid[i][j] = '0' ;
+            callBFS(grid, i+1 ,j); //up
+            callBFS(grid, i-1 ,j); //down
+            callBFS(grid, i ,j +1); //right
+            callBFS(grid, i ,j-1); //left
+            
+        }
+        int numIslands(vector<vector<char>>& grid){
+                 
+            int num_islands = 0;
+            // traverse through 2D
+            
+            for(int i=0; i < grid.size(); i++){
+                for(int j= 0; j< grid[i].size();j++){
+                    if (grid [i][j] == '1'){
+                        num_islands += 1;
+                        callBFS(grid, i , j);
+                    }
+                }
+            }
+            return num_islands;
+        
+    }
+};
+
+//Time complexity : O(M x N) where M is number of rows and N is number of columns
