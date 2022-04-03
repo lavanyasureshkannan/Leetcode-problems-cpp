@@ -14,16 +14,16 @@
 class Solution{
     public:
     
-        void callBFS(vector<vector<char>>& grid, int i, int j){
+        void callDFS(vector<vector<char>>& grid, int i, int j){
             // check for boundary conditions
             if(i<0 || j<0 || i>=grid.size() || j>=grid[i].size() || grid[i][j] == '0')
                 return;
             // if you find '1' then increment the count change every '1' and its adjacent to '0'
             grid[i][j] = '0' ;
-            callBFS(grid, i+1 ,j); //up
-            callBFS(grid, i-1 ,j); //down
-            callBFS(grid, i ,j +1); //right
-            callBFS(grid, i ,j-1); //left
+            callDFS(grid, i+1 ,j); //up
+            callDFS(grid, i-1 ,j); //down
+            callDFS(grid, i ,j +1); //right
+            callDFS(grid, i ,j-1); //left
             
         }
         int numIslands(vector<vector<char>>& grid){
@@ -35,7 +35,7 @@ class Solution{
                 for(int j= 0; j< grid[i].size();j++){
                     if (grid [i][j] == '1'){
                         num_islands += 1;
-                        callBFS(grid, i , j);
+                        callDFS(grid, i , j);
                     }
                 }
             }
