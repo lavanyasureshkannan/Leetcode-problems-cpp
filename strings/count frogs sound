@@ -1,0 +1,55 @@
+// class Solution {
+// public:
+//     int minNumberOfFrogs(string croakOfFrogs) {
+
+//     }
+// };
+
+
+class Solution{
+    public:
+    int minNumberOfFrogs(string s){
+        
+        if(s.size() == 0)
+            return -1;
+        unordered_map <char,int> char_count;
+        
+        // check for the string validity
+        for(char c : s)
+        {
+            char_count[c] ++ ;
+            if(c == 'r' && char_count['c'] < char_count['r'])
+                return -1;
+            if(c == 'o' && char_count['r'] < char_count['o'])
+                return -1;
+            if(c == 'a' && char_count['o'] < char_count['a'])
+                return -1;
+            if(c == 'k' && char_count['a'] < char_count['k'])
+                return -1;
+        }
+        if(!(char_count['c'] == char_count['r'] &&
+            char_count['r'] == char_count['o'] &&
+            char_count['o'] == char_count['a']&&
+            char_count['a'] == char_count['k'] )) return -1;
+        
+        // keep track of two counts 1. max count; 2. current count
+        int max_count = 0;
+        int current_count = 0;
+        for(int i = 0; i< s.size(); i++)
+        {
+            if(s[i] == 'c')
+            {
+                current_count += 1;
+                max_count = max(max_count, current_count);
+            }
+            else if (s[i] == 'k')
+            {
+                current_count -= 1;
+            }
+            
+        }
+           
+        // return the max count
+        return max_count;
+    }
+};
