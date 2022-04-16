@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        // initialize the max value
+        int maxi =0;
+        for(int i =0; i< height.size(); i++)
+        {
+            for(int j =i+1; j<height.size(); j++)
+            {
+                int current_area = min(height [i] , height[j]) * (j-i);
+                maxi = max(maxi, current_area);
+            }
+        }
+        return maxi;
+    }
+    
+};
+
+
+//Time : O(N^2)
+//Space: O(1)
