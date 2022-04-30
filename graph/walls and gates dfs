@@ -1,0 +1,43 @@
+
+using namespace std;
+class Solution {
+public:
+        
+    void callDFS(int i, int j, int count,vector<vector<int>>& rooms)
+    {
+        //check for boundaries
+        if(i<0 || i>=rooms.size() || j<0 || j>=rooms[i].size() || rooms[i][j] < -1)
+        {
+            return;
+        }
+        // minimum of the count and track
+        if(rooms[i][j] == min(rooms[i][j],count) && count != 0)
+        {
+            return;
+        }
+        rooms[i][j] = min(rooms[i][j],count);
+        callDFS(i + 1,j,count+1, rooms);
+        callDFS(i - 1,j,count+1, rooms);
+        callDFS(i,j + 1,count+1, rooms);
+        callDFS(i,j - 1,count+1, rooms);
+    }
+    
+    
+    void wallsAndGates(vector<vector<int>>& rooms) 
+    {
+        // traverse through the 2D array
+        for(int i =0; i<rooms.size(); i++)
+        {
+            for(int j = 0; j<rooms[i].size(); j++)
+            {
+                if(rooms[i][j] == 0)
+                {
+                    callDFS(i,j,0,rooms);
+                }
+            }
+        }
+    }
+    
+};
+
+Time complexity O(N^2)
