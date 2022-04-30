@@ -1,0 +1,33 @@
+class MovingAverage {
+    private:
+    queue <int> q;
+    int win_size;
+    double sum;
+    
+    public:
+    MovingAverage(int size) 
+    {
+        win_size = size;
+    }
+    
+    double next(int val) 
+    {
+        q.push(val);
+        sum = sum + val;
+        if(q.size() > win_size)
+        {
+            sum = sum - q.front();
+            q.pop();
+        }
+        return sum / q.size();
+    }
+};
+
+Time COmplexity O(n)
+
+
+/**
+ * Your MovingAverage object will be instantiated and called as such:
+ * MovingAverage* obj = new MovingAverage(size);
+ * double param_1 = obj->next(val);
+ */
