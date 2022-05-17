@@ -1,0 +1,24 @@
+// binary search, two pointer algorithm
+class Solution
+{
+public:
+    int mySqrt(int x)
+    {
+        int left = 0;
+        int right = x;
+        long long int mid;
+        long long int square;
+        while(left <= right)
+        {
+            mid = left + (right - left)/2;
+            square = mid * mid;
+            if(square == x) return mid;
+            else if(square < x) left = mid+1;
+            else right = mid-1;
+        }
+        return left -1;
+    }
+};
+
+// TIME COMPLEXITY O(log N)
+// SPACE COMPLEXITY O(1)
