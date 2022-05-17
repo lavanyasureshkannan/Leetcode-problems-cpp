@@ -1,0 +1,38 @@
+// binary search template 2
+
+
+class Solution 
+{
+public:
+    int findMin(vector<int>& nums) 
+    {
+        // base case 1 : if only one element in array then return that element
+        if(nums.size() == 1) return nums[0];
+        
+        
+        int left = 0;
+        int right = nums.size() -1;
+        
+        // base case 2: if the last element is greater than first element then no rotations
+        if(nums[right] > nums[0]) return nums[0];
+        
+        while(left <=  right)
+        {
+            int mid = left + (right - left) /2;
+            // check  if the mid is greater than mid next element
+            if(nums[mid] > nums[mid+1]) return nums[mid + 1]; 
+            // check for the other possibility
+            else if(nums[mid-1] > nums[mid]) return nums[mid];
+            
+            // when the smalest value is to the right
+            if(nums[mid] > nums[0]) left = mid+1;
+            
+            // when the smallest value is to the left
+            else right = mid -1;
+            
+        }
+        return -1;
+    }
+};
+
+// TIME COMPLEXITY O(Log N)
