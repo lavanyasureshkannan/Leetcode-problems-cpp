@@ -1,0 +1,59 @@
+// classic binary search
+
+class Solution 
+{
+public:
+    // create an array to return the respective values
+    vector<int> searchRange(vector<int>& nums, int target) 
+    {
+        vector<int> result;
+        int first = findStartindex(nums, target);
+        int last = findEndindex(nums,target);
+        result.push_back(first);
+        result.push_back(last);
+        return result;
+    }
+
+    // for first occurences
+    int findStartindex(vector<int>& nums, int target)
+    {
+        int index = -1;
+        int left = 0;
+        int right = nums.size() -1;
+        while(left <= right)
+        {
+            int mid = left + (right - left) / 2 ;
+            // left search
+            if(nums[mid] >=target) right = mid - 1;
+            // right search
+            else left = mid + 1;
+            if(nums[mid] == target) index =  mid;
+ 
+        };
+        return index;     
+    }
+
+    // for last occurences
+    
+    int findEndindex(vector<int>& nums, int target)
+    {
+        int index = -1;
+        int left = 0;
+        int right = nums.size() -1;
+        while(left<=right)
+        {
+            int mid = left + (right - left) / 2 ;
+            // right search
+            if(nums[mid] <= target) left = mid + 1;
+            // left search
+            else right = mid - 1;
+
+            if(nums[mid] == target) index =  mid;
+
+        }
+        return index;
+    }
+};
+
+// TIME COMPLEIXTY O(Log N)
+// SPACE COMPLEXITY O(1)
