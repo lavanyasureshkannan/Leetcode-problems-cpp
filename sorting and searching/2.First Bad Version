@@ -5,6 +5,9 @@
 // binary search
 // using classical two pointer technique
 // finding middle and doing right na dleft search accordingly
+// return left as the first bad version
+
+
 class Solution 
 {
 public:
