@@ -1,0 +1,34 @@
+class Solution 
+{
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) 
+    {
+        // x -> target
+        // assigning the binary search bounds
+        int left = 0;
+        int right = arr.size() - k; // otherwise there wouldn't be enough elements to its right
+                                    // as we are searching for window
+        
+        while(left < right)
+        {
+            int mid = left + (right - left) / 2;
+            // here we are just assuming x to be greater and mid+k means we are checking outside the                boundary
+            
+            if(x - arr[mid] > arr[mid+k] - x) left = mid+1; // search right
+            else right = mid; // search left
+                
+        }
+        
+        
+        // create a vector for the output
+        vector<int> result;
+        for(int i = left; i<left+k; i++)
+        {
+            result.push_back(arr[i]);
+        }
+        return result;
+        
+    }
+};
+
+//TIME COMPLEXITY O(Log(N-K) + K) as N is array and O(k) to build the final output
