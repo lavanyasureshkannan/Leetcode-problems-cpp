@@ -1,0 +1,23 @@
+// AAPROACH 1
+class Solution 
+{
+public:
+    vector<int> sortedSquares(vector<int>& nums) 
+    {
+        int n = nums.size();
+        vector<int> ans(n);
+        for(int i = 0; i< n; i++)
+        {
+            ans[i] = nums[i] * nums[i];
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+};
+// TIME COMPLEXITY O(NlogN) where N is length
+// SPACE COMPLEXITY O(N)
+
+
+
+
+
