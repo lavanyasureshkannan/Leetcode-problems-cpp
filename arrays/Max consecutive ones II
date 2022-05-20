@@ -1,0 +1,40 @@
+class Solution 
+{
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) 
+    {
+        int left = 0;
+        int right = 0;
+        int max_count = 0;
+        int zeros = 0;
+        
+        // while out window is in bounds
+        while(right < nums.size())
+        {
+            // adding the right most element
+            if(nums[right] == 0) zeros++;
+            // while window is invalid
+            while(zeros == 2)
+            {
+                if(nums[left] == 0)
+                {
+                    zeros--;
+                }
+                left++;
+            }
+        // update the max count
+            max_count = max(max_count, right - left + 1);
+        
+        // expand window
+            right++;
+        }
+        
+        return max_count;
+        
+        
+    }
+};
+
+
+// TIME COMPLEXITY O(N) -->TWO POINTERS
+// SPACE COMPLEXITY O(1)
