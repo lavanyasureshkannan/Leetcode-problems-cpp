@@ -1,0 +1,66 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+
+APPROACH 1 USING UNORDERED_MAP
+class Solution
+{
+    public:
+    ListNode* detectCycle(ListNode* head)
+    {
+        unordered_map<ListNode*, int> visited;
+        while(head != NULL)
+        {
+        // count the number of elements based on the given key -> head
+            if(visited.count(head)) return head;
+            else visited[head] = 1;
+            head = head->next;
+        }
+        return NULL;
+
+    }
+};
+
+// TIME COMPLEXITY O(N)
+// SPACE COMPLEXITY O(N)
+
+
+
+APPROACH 2 -> USING TWO POINTERS
+class Solution
+{
+    public:
+    ListNode* detectCycle(ListNode* head)
+    {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        // check for cycle
+        while(fast != NULL && fast->next != NULL)
+        {
+            slow = slow -> next;
+            fast = fast->next->next;
+            if(slow == fast) // says there is a cycle
+            {
+                slow = head; // MAKE NEW HEAD
+                
+                while(slow != fast) // find the index
+                {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
+            }
+        }
+        return NULL;
+
+    }
+};
+
+
+// TIME COMPLEXITY -> O(N)
+// SPACE COMPLEXITY -> O(1)
