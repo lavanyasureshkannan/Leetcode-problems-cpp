@@ -1,5 +1,3 @@
-206. Reverse Linked List
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -15,7 +13,9 @@ public:
     ListNode* reverseList(ListNode* head) {
         ListNode *prev = NULL;
         // 0 1 2 3 
-        while(head != NULL){
+        while(head != NULL)
+        {
+            // saving it in the local variable
             ListNode *next_node = head->next;
             // 0->1->2->3
             // head = 1 
@@ -31,3 +31,6 @@ public:
         
     }
 };
+
+// TIME COMPLEXITY O(N)
+// SPACE COMPLEXITY O(1)
