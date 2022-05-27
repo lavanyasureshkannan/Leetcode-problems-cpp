@@ -15,6 +15,9 @@ public:
     }
 };
 
+// TIME COMPLEXITY O(N^2)
+// SPACE COMPLEXITY O(N)
+
 2. APPROACH 2 USING HASHMAPS
 
 class Solution {
@@ -39,3 +42,5 @@ public:
         
 
 };
+// TIME COMPLEXITY O(N)
+// SPACE COMPLEXITY O(N)
