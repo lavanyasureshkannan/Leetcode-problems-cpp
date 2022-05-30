@@ -1,3 +1,6 @@
+APPROACH 1 - BY USING ARRAY
+
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -33,4 +36,64 @@ public:
 
 // TIME COMPLEXITY O(N) -> ITERATING THROUGH THE ARRAY
 // SPACE COMPLEXITY O(N) -> ARRAY
+
+
+******************************************************************************************************************************************************
+
+
+2. APPROACH 2 USING SLOW, FAST POINTER TECHNOQUE
+class Solution 
+{
+public:
+    bool isPalindrome(ListNode* head) 
+    {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while(fast != NULL && fast->next != NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        // now set fast to head and slow will be at the middle
+        // 1->2-3-> 1->2->3
+        // head  1   reverse 
+        slow = reverselinkedlist(slow);
+        fast = head;
+        
+        // iterate invidually
+        while(slow != NULL)
+        {
+            // we are checking if slow is equal or not equal to fast
+            if(slow->val != fast->val) return false;
+            slow = slow->next;
+            fast = fast ->next;
+        }
+        return true;
+        
+    }
+    
+    // to reverse the linked list
+    ListNode* reverselinkedlist(ListNode* head)
+    {
+        ListNode* prev = NULL;
+        while(head != NULL)
+        {
+            ListNode* next_node = head->next;
+            head->next = prev;
+            prev = head;
+            head = next_node;
+        }
+        return prev;    
+        
+    }
+    
+};
+
+
+// TIME COMPLEXITY O(N)
+// SPACE COMPLEXITY O(1)
+
+
 
