@@ -1,4 +1,3 @@
-21. Merge Two Sorted Lists
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -9,6 +8,9 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+// APPROACH1 - ITERATIVE APPROACH
+
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
@@ -51,3 +53,40 @@ public:
         
     }
 };
+
+
+// TIME COMPLEXITY O(n + m) --> l1 and l2 increments on each loop iterations
+// SPACE COMPLEXITY O(1)
+
+*****************************************************************************************************************************************************
+
+// APPROACH 2 - RECURRSIVE
+
+class Solution 
+{
+public:
+     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
+     {
+         // basecase
+         if(l1 == NULL) return l2;
+         if(l2 == NULL) return l1;
+         
+         // compare the heads of l1 and l2
+         if(l1->val < l2->val)
+         {
+             l1->next = mergeTwoLists(l1->next, l2);
+             return l1;
+         }
+         else
+         {
+             l2->next = mergeTwoLists(l1, l2->next);
+             return l2;
+         }
+ 
+     }
+    
+};
+
+
+//TIME COMPLEXITY O(m + n) ---> m--> nodes in l1 and n --> nodes in l2
+// SPACE COMPLEXITY O(m + n)
