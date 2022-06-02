@@ -31,5 +31,5 @@ public:
 };
 
 
-//TIME COMPLEXITY O(N)
-// SPACE COMPLEXITY O(N)
+//TIME COMPLEXITY O(N) -> we traverse entire input tree once
+// SPACE COMPLEXITY O(N) -> bound by height of the tree
