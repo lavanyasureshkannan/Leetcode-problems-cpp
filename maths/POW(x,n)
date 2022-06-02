@@ -46,7 +46,12 @@ public:
 
         //case1: handle negative powers --> if 2^-2 = 1/2^2;
         if(n < 0) return myutil(1/x,-n);
-        double result = myutil(x * x, n/2);
+        
+        // x^n = x * x * x * x
+                n/2         n/2
+             => (x^2)^n/2 * (x^2)^n/2
+             
+        double result = myutil(x * x, n/2);  
         // if odd
         if(n%2) return result = result * x;
         return result;
@@ -58,5 +63,5 @@ public:
     }
 };
 
-// TIME COMPLEXITY O(log n)
+// TIME COMPLEXITY O(log n) // each time the n is reduced by half
 // SPACE COMPLEXITY O(log n)
