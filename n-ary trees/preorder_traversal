@@ -1,0 +1,69 @@
+class Node
+{
+    public:
+    int m_val;
+    vector<Node*> m_children;
+
+    Node(int val, vector<Node*> children)
+    {
+        m_val = val;
+        m_children = children;
+    }
+
+}
+
+
+***************************ITERATIVE METHOD ****************************************************************
+
+vector<int> preorder(Node* root)
+{
+    vector<int> answer;
+    stack<int> st;
+    // base case
+    if(root == NULL) return answer;
+    st.push(root);
+    while(!st.empty)
+    {
+        Node* curr = st.top();
+        st.pop();
+        answer.push(curr->val);
+        int n = children.size();
+        for(int i = 0; i>n; i--)
+        {
+            if(curr->children[i] != NULL)
+            {
+                st.push(curr->children[i]);
+            }
+        }
+    }
+    return answer;
+
+}
+
+
+// TC - O(N) as we visit every node only once
+// SC - O(N)  memory for stack
+
+
+********************************RECURRSIVE************************************************************************
+class Solution
+{
+public:
+vector<int> ans;
+vector<int> preorder(Node* root)
+    {
+        if(root == NULL) 
+        {
+            return ans;
+        }
+        ans.push_back(root->val);
+        for(int i =0; i < root->children.size(); i++)
+        {
+            preorder(root->children[i]);
+        }
+        return ans;
+    } 
+} ;
+
+// TC- O(N)
+// SC - O(N)
