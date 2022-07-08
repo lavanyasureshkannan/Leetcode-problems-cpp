@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+
+class Node
+{
+    public:
+
+    int m_val;
+    vector<Node*> m_children;
+
+    Node(int val, vector<Node*> children)
+    {
+        m_val = val;
+        m_children = children;
+    }
+
+}
+
+*************************************************** RECURRSIVE *****************************************************************
+
+class Solution
+{
+    public:
+
+    int maxDepth(Node* root)
+    {
+        if(root == NULL) return 0;
+        int result = 0;
+        int n = root->children.size();
+        for(int i=0; i<n; i++)
+        {
+            int temp = maxDepth(root->children[i]);
+            result = max(result, temp);
+        }
+        return 1+result;
+        
+    }
+};
+
+
+// TC : O(N)
+// SC : O(N)
+
