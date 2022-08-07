@@ -19,7 +19,7 @@ class Solution
         int result = 0;
         // 1. perimeter of the triangle -> (a+b)>c, (b+c)>a, (c+a)>b
         // 2. sort the elements
-        sort(nums.begin(),nums.end());
+        sort(nums.begin(),nums.end(), greater<int>()); // greater int to sort in descending order
         for(int i =0; i<nums.size() - 2; i++)
         {
             int a = nums[i];
