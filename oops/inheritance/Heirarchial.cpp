@@ -16,11 +16,9 @@ using namespace std;
 
 /*  HEIRARCHIAL INHERITANCE -> class is created from another derived class
 
-    Base class          
-        |             
-    Derived class
-        |
-    second derived class
+             Base class          
+             /        \             
+    Derived class    second derived class
 
 */
 
