@@ -20,7 +20,7 @@ class group
 
 int main()
 {
-    // object
+    // OBJECT
     group G1;
 
     // declare the variables inside G1
