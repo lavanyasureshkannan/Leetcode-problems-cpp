@@ -14,11 +14,14 @@ using namespace std;
                          -> Hybrid Inheritance
 */
 
-/*  HEIRARCHIAL INHERITANCE -> class is created from another derived class
+/*  HYBID INHERITANCE -> combination of heirarchial and multiple inheritance
 
-             Base class          
-             /        \             
-    Derived class    second derived class
+    Base class          
+        |  
+    base class 2
+    /       \
+sub class1   sub class2          
+
 
 */
 
@@ -33,8 +36,17 @@ class Vehicle
     }
 };
 
+// base class 2
+class fourwheel
+{
+    public:
+    void display_one()
+    {
+        cout << "This is a fourhweel -> display under second base class" << endl;
+    }
+}; 
 
-// derived class
+// subclass 1
 class car : public Vehicle
 {
     public:
@@ -44,9 +56,8 @@ class car : public Vehicle
     }
 };
 
-
 // second sub class
-class bus : public Vehicle
+class bus : public Vehicle, public fourwheel
 {
     public:
     void display_sub()
@@ -58,12 +69,9 @@ class bus : public Vehicle
 
 int main()
 {
-    car car1;
-    car1.display();
-    car1.display_second();
-
     bus bus1;
     bus1.display();
+    bus1.display_one();
     bus1.display_sub();
     return 0;
 }
