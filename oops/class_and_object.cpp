@@ -33,3 +33,7 @@ int main()
     return 0; 
 }
 
+// SIZE OF THE CLASS -> 1 BYTE
+// SIZE OF THE OBJECT -> is equal to the sum of size of all the data members of the class.
+
+
