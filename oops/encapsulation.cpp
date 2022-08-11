@@ -2,7 +2,8 @@
 using namespace std;
 
 /*
-    ENCAPSULATION -> When you dont want to declare things in public, you can declare it in private and not want to explicitly mention it you will do this.
+    ENCAPSULATION -> Wrapping up the data in single unit. 
+    When you dont want to declare things in public, you can declare it in private and not want to explicitly mention it you will do this.
     get and set method -> declare the variable in private and get the variable inside public
 */
 
