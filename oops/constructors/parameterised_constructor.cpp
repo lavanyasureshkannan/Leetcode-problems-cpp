@@ -7,7 +7,7 @@
 // 1. DEFAULT CONSTRUCTOR, 2. COPY CONSTRUCTOR, 3. PARAMETERISED CONSTRUCTOR
 
 
-// PARAMETERISED CONSTRUCTOR
+// PARAMETERISED CONSTRUCTOR ->  It is possible to pass arguments to constructors. Typically, these arguments help initialize an object when it is created.
 class construct
 {
     private:
