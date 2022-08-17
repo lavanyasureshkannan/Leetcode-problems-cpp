@@ -21,7 +21,8 @@ class Solution
         int sign = 1;
         
         int n = s.length();
-
+       // base case
+        if(n == 0) return 0;
         for(int i = 0; i < n; i++) 
         {    
             if(isdigit(s[i])) 
