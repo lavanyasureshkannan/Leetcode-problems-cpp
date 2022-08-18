@@ -41,5 +41,6 @@ class Solution
         }
 };
 
-
+// TC: O(N^2) Sorting the array takes O(n log n)  + over all
+// SC: O(n) Depending on the implementation of the sorting algorithm.
 
