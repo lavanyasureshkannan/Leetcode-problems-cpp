@@ -13,6 +13,8 @@ using namespace std;
 
     A multithreaded program contains two or more parts that can run concurrently. 
     Each part of such a program is called a thread, and each thread defines a separate path of execution.
+    
+    To wait for a thread use the std::thread::join() function. 
 */
 
 /*
