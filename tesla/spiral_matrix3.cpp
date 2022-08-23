@@ -32,7 +32,9 @@ class Solution
                     result.push_back({rstart,cstart});
                 }
             }
-            d = (d+1)%4; // getting the mod val and updating the d cell which means moving towards the west
+            // getting the mod val and updating the d cell which means moving towards the west
+            ////changing diection then mod by 4 so that dir remains in range (0-3
+            d = (d+1)%4; 
         }
         return result;
     }
