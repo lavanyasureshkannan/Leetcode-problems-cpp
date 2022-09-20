@@ -44,6 +44,10 @@ int minMeetingRooms(vector<vector<int>>& intervals)
 
 }
 
+
+// TC: O(N logN)
+// SC: O(N)
+
 int main()
 {
     vector<vector<int>> a = {{5,10},{10,15},{0,30}};
