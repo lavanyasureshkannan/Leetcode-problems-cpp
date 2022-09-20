@@ -37,6 +37,9 @@ class Solution
 
 };
 
+// TC: O(N + KlogN) => o(n) heap + O(klogN) pop and other operation
+// SC: O(n) 
+
 
 int main()
 {
