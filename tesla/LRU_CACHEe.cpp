@@ -17,6 +17,8 @@ key |   |   |
 val |   |   |
 -------------
 
+Queue is implemented using a doubly-linked list. The maximum size of the queue will be equal to the total number of frames available (cache size). The most recently used pages will be near the front end and the least recently used pages will be near the rear end.
+A Hash with the page number as key and the address of the corresponding queue node as value.
 
 Doubly linked list -> for storing the relative order of elements
 insert things node->next when we delete we can just pop it of from the tail
