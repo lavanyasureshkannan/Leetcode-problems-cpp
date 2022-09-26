@@ -39,3 +39,7 @@ class Solution
         return max_path_sum;
     }
 };
+
+
+// TC: O(N) -> N num of nodes
+// SC: O(H) -> H is the height of the tree
