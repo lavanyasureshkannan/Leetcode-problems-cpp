@@ -56,3 +56,6 @@ int main()
     std:: cout << calculate("(1+5)-8+(3-2)") << std:: endl;
     return 0;
 }
+
+// TC: O(N)
+// SC: O(N)
