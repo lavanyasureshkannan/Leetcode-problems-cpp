@@ -2,4 +2,4 @@
 2. [big o](https://www.bigocheatsheet.com/)
 3. [Conversion hacks](https://github.com/lavanyasureshkannan/Leetcode-problems-cpp/blob/main/conversion_hack.cpp)
 4. [ace c++](https://www.educative.io/path/ace-cpp-coding-interview)
-5. [Basic calculator](https://medium.com/@CalvinChankf/solving-basic-calculator-i-ii-iii-on-leetcode-74d926732437)
+5. [Basic calculator -> all solutions](https://medium.com/@CalvinChankf/solving-basic-calculator-i-ii-iii-on-leetcode-74d926732437)
