@@ -16,6 +16,7 @@ int minTaps(int n, vector<int>& A)
             int right = min(i + A[i], n);
             for (int j = left; j <= right; j++)
             {
+                    // We can water [left, right] with onr tap, and water [0, left - 1] with dp[left - 1] taps.
                 dp[j] = min(dp[j], dp[max(0, i - A[i])] + 1);
             }
         }
