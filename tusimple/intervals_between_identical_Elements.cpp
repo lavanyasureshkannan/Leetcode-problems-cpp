@@ -9,29 +9,6 @@ value of Rth index(center) = frequency * index -(sum of indexes on the left)
 1. create a map<value, sum of indexes> 
 */
 
-vector<long long> getDistance(vector<int>& nums)
-{
-    vector<long long> result;
-    unordered_map<int, long long> mp;
-    vector<int> frequency;
-    // traversing right
-    for(long i=0; i<nums.size(); i++)
-    {
-        int curr = nums[i];
-        if(mp.find(curr) == mp.end())
-        {
-            mp.insert(curr, 0);
-        }
-        result[i] = result[i] + (i * (frequency[curr])) - mp.find(curr);
-        mp.insert(curr, mp.insert(curr)+i);
-    }
-    // traversing through left
-
-
-
-
-    return result;
-}
 
 
 class Solution 
