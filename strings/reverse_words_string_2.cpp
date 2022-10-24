@@ -6,6 +6,11 @@ class Solution
     public:
     string reverseWords(string s)
     {
+        /*
+        Input: s = "Let's take LeetCode contest"
+        Output: "s'teL ekat edoCteeL tsetnoc"
+        */
+        
         // two pointer technique
         // left, right pointer => 0(first idx)
         // left will be initially at the start and right will increment till ' '
