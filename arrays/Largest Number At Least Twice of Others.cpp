@@ -8,7 +8,8 @@ class Solution
 public:
     int dominantIndex(vector<int>& nums) 
     {
-        // library function to find the maximum element int the array
+        // std::max_element is defined inside the header file and it returns an iterator pointing to the element 
+        // with the largest value in the range [first, last). 
         int maxi = *max_element(nums.begin(), nums.end());
         int max_idx = 0;
         
