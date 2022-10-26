@@ -1,0 +1,39 @@
+#include<iostream>
+#include<vector>
+#include<numeric>
+#include<stack>
+#include<queue>
+#include<climits>
+using namespace std;
+
+class Solution 
+{
+    public:
+    void solve(string &digits,int start,vector<string>&v,string s,vector<string>&res)
+    {
+        if(start==digits.size())
+        {
+            res.push_back(s);
+            return;
+        }
+        string t = v[(digits[start]-'0')-2];
+        for(int i=0; i<t.size(); i++)
+        {
+            s+=t[i];
+            solve(digits,start+1,v,s,res);
+            s.pop_back();
+        }
+        return;
+    }
+    vector<string> letterCombinations(string digits)
+    {
+        vector<string>v{"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        vector<string>res;
+        string s="";
+        if(digits.size()!=0)
+        {
+            solve(digits,0,v,s,res);
+        }
+        return res;
+    }
+};
