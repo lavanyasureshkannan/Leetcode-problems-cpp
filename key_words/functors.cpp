@@ -5,28 +5,32 @@
 // This is useful because functions encapsulate behavior.
 
 
+
+
 #include<iostream>
 using namespace std;
 
-
-class Mul
+// without param
+int getNum()
 {
-    int m_val;
-    public: 
-    Mul() {};
-    Mul(int val) : m_val(val) {}
-    int operator()(int val)
-    {
-        return val * m_val;
-    }
+    return 5;
+}
 
-};
+// with param
+int add(int a, int b)
+{
+    return a+b;
+}
+
 
 int main()
 {
-    Mul mul1(10); // object is working as function or state
-    cout << mul1(2) << endl;
-    cout << mul1(3) << endl;
+    // function pointer which is pointing to the function
+    int(*func_ptr)() = getNum;
+    cout << func_ptr() << endl;
+    // with param
+    int(*func_ptr_2)(int, int) = add;
+    cout << add(2,3) << endl;
+    cout << add(4,5) << endl;
     return 0;
 }
-
