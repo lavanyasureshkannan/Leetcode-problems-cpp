@@ -1,6 +1,8 @@
 // FUNCTORS or function pointers
 // tip: "auto" ->   keyword is used in function pointers 
 // Functors are objects that can be treated as though they are a function or function pointer.
+// A function pointer is a variable that stores the address of a function that can later be called through that function pointer. 
+// This is useful because functions encapsulate behavior.
 
 
 #include<iostream>
