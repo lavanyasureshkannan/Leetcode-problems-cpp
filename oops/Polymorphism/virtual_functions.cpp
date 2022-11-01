@@ -19,7 +19,6 @@ using namespace std;
 
 /*
 VIRTUAL FUNCTION -> A virtual function is a member function in the base class that we expect to redefine in derived classes.
-A class is considered to be ABSTRACT CLASS if it has atleast one virtua function it. 
 They are declared inside the class and defined in the derived class during runtime
 */
 
