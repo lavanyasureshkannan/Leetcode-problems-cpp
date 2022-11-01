@@ -47,5 +47,7 @@ class Myclass
 int main()
 {
     unique_ptr<Myclass>unq_ptr = make_unique<Myclass>();
+    unique_ptr<Myclass>unq_ptr2;
+    unq_ptr2 = move(unq_ptr);
 
 }
