@@ -18,7 +18,7 @@ class Solution
          vector<vector<bool>> visited(row, vector<bool>(col, false));
          queue<pair<int,int>> q;
          q.push({src.first, src.second});
-         visited[0][0] = true;
+         visited[src.first][src.second] = true;
          while(!q.empty())   
          {
              int size = q.size();
