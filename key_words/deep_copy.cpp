@@ -29,7 +29,7 @@ class rectangle
         cout << length << " " << *width << endl;
     }
     // creating parameterized constructor and deep copy
-    // class name (const class name& obj)
+    // class name (const class name& obj) => copy constructor 
     rectangle(rectangle& n)
     {
         length = n.length;
