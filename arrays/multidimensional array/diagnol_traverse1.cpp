@@ -30,7 +30,7 @@ class Solution
 {
     public:
 	vector<int> findDiagonalOrder(vector<vector<int>>& matrix) 
-    {
+    	{
         
 		int m = matrix.size();
 		int n = matrix[0].size();
@@ -41,26 +41,27 @@ class Solution
 
         if(m == 0 || n == 0) return v;
     
-		for(int i=0; i<m; i++)
+	for(int i=0; i<m; i++)
         {
-			for(int j=0; j<n; j++)
-            {
-				diagnol[i+j].push_back(matrix[i][j]); 
-			}
+		for(int j=0; j<n; j++)
+            	{
+			diagnol[i+j].push_back(matrix[i][j]); 
 		}
-		for(int i=0; i<diagnol.size(); i++)
+	}
+	
+	for(int i=0; i<diagnol.size(); i++)
         {
-			if(i%2 == 0)
-			{
-				reverse(diagnol[i].begin(), diagnol[i].end());
-            }
-            for(int j=0; j<diagnol[i].size(); j++)
-			{
-            	v.push_back(diagnol[i][j]);
+		if(i%2 == 0)
+		{
+			reverse(diagnol[i].begin(), diagnol[i].end());
+            	}
+            	for(int j=0; j<diagnol[i].size(); j++)
+		{
+            		v.push_back(diagnol[i][j]);
 		
-            }
+            	}
         }
-		return v;
+	return v;
 	}
 };
 
