@@ -16,3 +16,6 @@ public:
         }
     }
 };
+
+//TC: O(M) transposing the matrix
+// SC: O(1)
