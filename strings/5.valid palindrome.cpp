@@ -9,7 +9,7 @@ public:
         // check for the valid characters
         for (int i=0;i<size;i++){
             if(s[i]>='A'&& s[i]<='Z'){
-                st+=tolower(s[i]);
+                st+=tolower(s[i]); // tolower is to convert into lower case
             }
             if(s[i]>='a' && s[i]<='z'){
                 st+=s[i];
