@@ -18,3 +18,6 @@ public:
         return rev;
     }
 };
+
+// TC: O(log(X))
+//SC: O(1)
