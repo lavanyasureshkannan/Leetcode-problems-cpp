@@ -37,3 +37,7 @@ public:
         
     }
 };
+
+
+//TC: O(N^2) // 2 for loop trverse every position
+//SC: O(N^2) // inserting and checking
