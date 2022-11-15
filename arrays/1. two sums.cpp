@@ -22,24 +22,33 @@ public:
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> twoSum(vector<int>& nums, int target) 
+    {
         unordered_map <int,int> hmap;
         vector<int> result;
-        for(int i = 0;i< nums.size();i++){
+        for(int i = 0;i< nums.size();i++)
+        {
+            // current element + x = target
+            // x = target - current element 
             int search = target - nums[i];
-            if (hmap.find(search) != hmap.end()){
+            // find that search element in your map
+            if (hmap.find(search) != hmap.end())
+            {
                 result.push_back(i);
                 result.push_back(hmap[search]);
                 return result;
             }
-            else{
+            
+            else
+            {
                 hmap[nums[i]] = i;
                 
             }
-                     }
-                     return result;
-                     }
+        }
         
+        return result;
+        }
+};
 
 };
 // TIME COMPLEXITY O(N)
