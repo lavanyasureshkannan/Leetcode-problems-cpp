@@ -1,58 +1,117 @@
-#include <iostream>
-#include <unordered_set>
+#include<iostream>
+#include<unordered_map>
+#include<unordered_set>
 using namespace std;
 
-
-// 1. brute force
-// 2. sliding window
-
+/*
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+*/
 
 // BRUTE FORCE
-int lengthOfLongestSubstring(string s) 
+
+class solution
 {
-    int result = 0;
-    int n = s.length();
-    for(int i = 0; i<n; i++) // start indice
+    public:
+    int longestsubstring(string& s)
     {
-        for(int j = i; j<n; j++) // end indice
+        int result;
+        for(int i=0; i<s.size(); i++)
         {
-            if(check_for_repetition(s,i,j))
+            for(int j=i; j<s.size(); j++)
             {
-                result = max(res, j - i + 1); //(end - start + 1)                }
+                if(check(s,i,j))
+                {
+                    result = max(result, j-i+1);
+                }
             }
         }
+        return result;
     }
-    return result;
 
-}
-
-// check for the repeating characters
-// to check for the duplicates we can iterate and put all the characters in unorderd_set 
-// and before puting it we check if it contians then return false 
-bool check_for_repetition(string& s, int start, int end)
-{
-    //best ds for checking repeating charaters unordered_set
-    unordered_set<char> chars;
-    for(int i = start; i<=end; i++)
+    bool check(string& s, int start, int end)
     {
-        char c = s[i];
-        if(char.count(c)) // check for the right character 
+        unordered_set<char> chars;
+        for(int i = start; i <= end; i++)
         {
-             return false;
+            char c = s[i];
+            // if the char already exist then return false
+            if(chars.count(c))
+            {
+                return false;
+            }
+            chars.insert(c);
         }
-        else 
+        return true;
+    }
+};
+// TC: O(n^3) 
+// SC: O(n) -> unordered_set
+
+//***************************************************************************************************************************
+
+// two pointer approach
+
+class Solution
+{
+    public:
+    int longestsubstring(string& s)
+    {
+        unordered_map<char, int> chars;
+        int result = 0;
+        int left = 0;
+        int right =0;
+        while (right < s.size())
         {
-            chars.insert(c)
+            char right_char = s[right];
+            chars[right_char]++;
+            while(chars[right_char] > 1)
+            {
+                char left_char = s[left];
+                chars[left_char]--;
+                left++;
+            }
+            result = max(result, right - left + 1); 
+        }
+        return result;
+    }
+};
+// TC: O(2n)
+// SC: O(m)
+
+//************************************************************************************************************************
+
+class Solution
+{
+    public:
+    int longestsubstring(string& s)
+    {
+        int result;
+        unordered_map<char, int> mp;
+        int i=0;
+        // extedning the range of i and j
+        for(int j=0; j<s.size(); j++)
+        {
+            if(mp[s[j]] > 0)
+            {
+                i = max(mp[s[j]],i);
+            }
+            result = max(result, j-i+1);
+            mp[s[j]] = j+1;
         }
     }
-    return true;
+};
 
-}
-// TC: O(n^3) 
-// SC: O(n,m) for unordered set and checking the strings
+// TC: O(n)
+// SC: O(n)
 
 
-//SLIDING WINDW CONCEPT
+//*****************************************************************
+
+class Solution 
+{
+public:
 int lengthOfLongestSubstring(string s) 
 {
     int left = 0;
@@ -84,13 +143,12 @@ int lengthOfLongestSubstring(string s)
     return maxi;
 }
 
-// TC: O(2n) -> o(n)
-// SC: O(n,m)
-
-
-// More optimized using unordered map by mapping all the characters to the integers
+};
 
 int main()
 {
-
+    solution s;
+    string test = "abcabcbb";
+    cout << s.longestsubstring(test);
+    return 0;
 }
