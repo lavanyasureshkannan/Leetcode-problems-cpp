@@ -111,6 +111,9 @@ class Solution
     }
 };
 
+// TC: O(N)
+// SC: O(N)
+
 int main()
 {
     vector<vector<int>> matrix = {{0,0,0},{1,1,0},{1,1,0}};
