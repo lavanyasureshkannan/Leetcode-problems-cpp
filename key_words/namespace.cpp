@@ -1,26 +1,25 @@
 #include<iostream>
 
-/* NAMESPACE -> you will use this when you have two variables declared with the same name
-    using namespace std is not recommended as std :: import all the libraries
+/*
+    NAMESPACE
+    -> The primary purpose of the namespace is to avoid naming conflicts
+    -> There are different libraries which has the same names. Inorder to avoid such conflicts we use namespace
+
+
 */
 
-namespace namespace1
+// creating our own namespace
+
+namespace utils
 {
-    void display()
+    int add(int a, int b)
     {
-        std::cout << "displayed" << std::endl;
+        return (a+b);
     }
-    int var = 25;
 }
-
-namespace namespace2
-{
-    int var = 70;
-}
-
 
 int main()
 {
-    namespace1::display();
+    std::cout << utils::add(2,3) << std::endl;
     return 0;
 }
