@@ -14,6 +14,9 @@ class base
     }
 };
 
+// when an object is constant then it can call only const member functions
+// constructors and destructors can never be const
+
 
 int main()
 {
