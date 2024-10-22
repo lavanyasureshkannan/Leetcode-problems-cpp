@@ -31,3 +31,17 @@ public:
 
 // TC: O(n*m)
 // SC: O(1) 
+
+int strstr(string& haystack, string& needle)
+{
+    int hl = haystack.length();
+    int nl = needle.length();
+    for(int i=0; i<= hl-nl; i++)
+    {
+        if(haystack.substr(i, nl) == needle)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
