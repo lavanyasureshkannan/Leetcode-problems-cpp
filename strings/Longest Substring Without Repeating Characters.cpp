@@ -145,6 +145,54 @@ int lengthOfLongestSubstring(string s)
 
 };
 
+
+// recent approach
+
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+#include<string>
+using namespace std;
+
+
+// a    b   c   a   b   c   b   b
+// lr
+// l    r
+// 
+int longest_Repeating_substring(string s)
+{
+    int left = 0;
+    int right = 0;
+    int maxi_return = 0;
+    unordered_set<char> char_ss;
+    while(right < s.size())
+    {
+        if(char_ss.find(s[right]) == char_ss.end())
+        {
+            char_ss.insert(s[right]);
+            maxi_return = max(maxi_return, (right - left + 1));
+            right ++;
+        }
+        else
+        {
+            char_ss.erase(s[left]);
+            left ++;
+        }
+    }
+    return maxi_return;
+
+}
+
+// O(N)
+// O(1)
+
+int main()
+{
+    string ss = "abcabcbb";
+    cout << longest_Repeating_substring(ss);
+    return 0;
+}
+
 int main()
 {
     solution s;
