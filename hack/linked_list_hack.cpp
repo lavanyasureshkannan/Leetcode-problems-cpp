@@ -9,6 +9,7 @@ struct Node
     Node(int m_val)
     {
         val = m_val;
+        next = nullptr;
     }
 };
 
