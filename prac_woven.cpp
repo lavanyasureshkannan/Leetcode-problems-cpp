@@ -232,7 +232,156 @@ bool canschedule(vector<vector<int>>& prerequisites, int numcourses)
     return false;
 }
 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
+/*
+    intervals = [[1,3],[2,6],[8,10],[15,18]]
+    o/p = [[1,6],[8,10],[15,18]]
+*/
+
+void display(vector<vector<int>>& arrays)
+{
+    for(int i=0; i<arrays.size(); i++)
+    {
+        for(int j=0; j<arrays[i].size(); j++)
+        {
+            cout << arrays[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+// vector<vector<int>> merge_intervals(vector<vector<int>>& intervals)
+// {
+//     vector<vector<int>> result;
+//     sort(intervals.begin(), intervals.end());
+//     int curr_begin = intervals[0][0];
+//     int curr_end = intervals[0][1];
+//     for(int i=0; i<intervals.size(); i++)
+//     {
+//         if(intervals[i][0] <= curr_end && intervals[i][0] >= curr_begin)
+//         {
+//             curr_begin = min(curr_begin, intervals[i][0]);
+//             curr_end = max(curr_end, intervals[i][1]);
+            
+//         }
+//         else
+//         {
+//             result.push_back({curr_begin,curr_end});
+//             curr_begin = intervals[i][0];
+//             curr_end = intervals[i][1];
+
+//         }
+//     }
+//     result.push_back({curr_begin, curr_end});
+//     display(result);
+//     return result;
+// }
+
+// int main()
+// {
+//     vector<vector<int>> intervals = {{1,3},{2,6},{8,10},{15,18}};
+//     merge_intervals(intervals);
+//     return 0;
+// }
+
+
+
+/*
+    intervals = [[1,3],[2,6],[8,10],[15,18]]
+    o/p = [[1,6],[8,10],[15,18]]
+*/
+
+vector<vector<int>> merge_intervals(vector<vector<int>>& intervals)
+{
+    // 1. sort the intervals
+    sort(intervals.begin(), intervals.end());
+    // 2. initialize the current begin and current end
+    int curr_begin = intervals[0][0];
+    int curr_end = intervals[0][1];
+    // 3. create a result array
+    vector<vector<int>> result; 
+    // 4. iterate through the intervals and comapre the begin and end
+    for(int i=1; i<intervals.size(); i++)
+    {
+        if(intervals[i][0] <= curr_end)
+        {
+            curr_end = max(curr_end, intervals[i][1]);
+        }
+        else
+        {
+            result.push_back({curr_begin, curr_end});
+            curr_begin = intervals[i][0];
+            curr_end = intervals[i][1];
+        }
+    }
+    result.push_back({curr_begin, curr_end});
+    display(result);
+    return result;
+
+}
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+/*
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+*/
+
+void display(vector<vector<int>>& nums)
+{
+    for(int i=0; i<nums.size(); i++)
+    {
+        for(int j=0; j<nums[i].size(); j++)
+        {
+            cout << nums[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+void backtrack(vector<vector<int>>& result, vector<int>& curr, vector<bool>& visited, vector<int>& nums)
+{
+    if(curr.size() == nums.size())
+    {
+        result.push_back(curr);
+        return;
+    }
+    for(int i=0; i<nums.size(); i++)
+    {
+        if(!visited[i])
+        {
+            curr.push_back(nums[i]);
+            visited[i] = true;
+            backtrack(result, curr, visited, nums);
+            curr.pop_back();
+            visited[i] = false;
+        }
+    }
+
+}
+
+
+vector<vector<int>> permutations(vector<int>& nums)
+{
+    vector<vector<int>> result;
+    vector<int> curr;
+    vector<bool> visited(nums.size(), false);  // (false, false, false)
+    backtrack(result, curr, visited, nums);
+    display (result);
+    return result;
+}
+
+int main()
+{
+    vector<int> nums = {1,2,3};
+    permutations(nums);
+    return 0;
+}
 
 int main()
 {
