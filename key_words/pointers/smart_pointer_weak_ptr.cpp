@@ -15,6 +15,9 @@ using namespace std;
         -> It’s much more similar to shared_ptr except it’ll not maintain a Reference Counter.
         -> In this case, a pointer will not have a stronghold on the object 
         -> after the scope the weak pointer will not keep the memory alive wherease the shared pointer will keep it alive.
+
+        If two shared_ptrs point to each other (like in a circular loop), they never get destroyed — because each one keeps the other alive.
+        That causes a memory leak. Thats why you use weak pointer
 */
 
 
