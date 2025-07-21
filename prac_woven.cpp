@@ -34,35 +34,6 @@ string itoa(int num)
     return result;
 }
 
-string itoa_optmized(int num)
-{
-    if(num == 0) return ""; // base case
-    vector<char> buffer(12); // creating a fixed buffer (int_max len 10 + minus + null terminator)
-    char *ptr = buffer.data() + buffer.size(); // pointer points to last element
-    *--ptr = '\0'; // null terminator
-    bool isnegative = false;
-    if(num < 0)
-    {
-        isnegative = true;
-        num = static_cast<unsigned>(-(num)); // to acoid overflow
-    }
-    else
-    {
-        num = static_cast<unsigned>(num);
-    }
-    while(num !=0)
-    {
-        int digit = num % 10;
-        *--ptr = digit + '0';
-        num = num / 10;
-    }
-    if(isnegative)
-    {
-        *--ptr = '-';
-    }
-    return string(ptr); // building at character and convert to string
-
-}
 
 int atoi (string s)
 {
@@ -254,46 +225,6 @@ void display(vector<vector<int>>& arrays)
     }
 }
 
-// vector<vector<int>> merge_intervals(vector<vector<int>>& intervals)
-// {
-//     vector<vector<int>> result;
-//     sort(intervals.begin(), intervals.end());
-//     int curr_begin = intervals[0][0];
-//     int curr_end = intervals[0][1];
-//     for(int i=0; i<intervals.size(); i++)
-//     {
-//         if(intervals[i][0] <= curr_end && intervals[i][0] >= curr_begin)
-//         {
-//             curr_begin = min(curr_begin, intervals[i][0]);
-//             curr_end = max(curr_end, intervals[i][1]);
-            
-//         }
-//         else
-//         {
-//             result.push_back({curr_begin,curr_end});
-//             curr_begin = intervals[i][0];
-//             curr_end = intervals[i][1];
-
-//         }
-//     }
-//     result.push_back({curr_begin, curr_end});
-//     display(result);
-//     return result;
-// }
-
-// int main()
-// {
-//     vector<vector<int>> intervals = {{1,3},{2,6},{8,10},{15,18}};
-//     merge_intervals(intervals);
-//     return 0;
-// }
-
-
-
-/*
-    intervals = [[1,3],[2,6],[8,10],[15,18]]
-    o/p = [[1,6],[8,10],[15,18]]
-*/
 
 vector<vector<int>> merge_intervals(vector<vector<int>>& intervals)
 {
@@ -324,10 +255,8 @@ vector<vector<int>> merge_intervals(vector<vector<int>>& intervals)
 
 }
 
-#include <iostream>
-#include <vector>
-using namespace std;
 
+//////////////// Permutations ///////////////////////////////
 /*
 Input: nums = [1,2,3]
 Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
@@ -376,11 +305,56 @@ vector<vector<int>> permutations(vector<int>& nums)
     return result;
 }
 
-int main()
+//////////////////////////////////// two_sum //////////////////////
+vector<int> twosum_optimized(vector<int>& nums, int target)
 {
-    vector<int> nums = {1,2,3};
-    permutations(nums);
-    return 0;
+    vector<int> result;
+    unordered_map<int, int> hmap;
+    for(int i=0; i<nums.size(); i++)
+    {
+        // curr_element + x = target => x = target - curr_elemt
+        int search = target - nums[i];
+        if(hmap.find(search) != hmap.end())
+        {
+            result.push_back(i);
+            result.push_back(hmap[search]);
+            display(result);
+            return result;
+        }
+        else
+        {
+            hmap[nums[i]] = i;
+        }
+
+    }
+    
+    return result;
+}
+
+////////////////// longest substring //////////////////////////
+
+int longest_Repeating_substring(string s)
+{
+    int left = 0;
+    int right = 0;
+    int maxi_return = 0;
+    unordered_set<char> char_ss;
+    while(right < s.size())
+    {
+        if(char_ss.find(s[right]) == char_ss.end())
+        {
+            char_ss.insert(s[right]);
+            maxi_return = max(maxi_return, (right - left + 1));
+            right ++;
+        }
+        else
+        {
+            char_ss.erase(s[left]);
+            left ++;
+        }
+    }
+    return maxi_return;
+
 }
 
 int main()
