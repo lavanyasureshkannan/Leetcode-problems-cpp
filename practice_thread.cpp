@@ -185,40 +185,113 @@ void func2()
 
 ////////////////////////// shared lock //////////////////////////////
 
-int count = 0;
+// int count = 0;
+// mutex mtx;
+
+// shared_mutex s_mtx;
+// int shared = 0;
+
+
+// void reader(int id)
+// {
+//     shared_lock<shared_mutex> sl(s_mtx);
+//     cout << "[Reader " << id << "] reading data: " << shared << endl;
+// }
+
+// void writer(int id)
+// {
+//     unique_lock<shared_mutex> sl(s_mtx);
+//     shared ++;
+//     cout << "[Writer " << id << "] writing data: " << shared << endl;
+// }
+
+// int main()
+// {
+//     thread r1(reader, 1);
+//     thread r2(reader, 2);
+//     thread r3(reader, 3);
+//     thread w1(writer, 1);
+
+//     r1.join();
+//     r2.join();
+//     r3.join();
+//     w1.join();
+
+//     //cout << shared << endl;
+//     return 0;
+// }
+
+//////////////////////// buffer ////////////////////////////////////
+
+
+/*
+    PRODUCER -> func 
+    keep adding the incoming data till the buffer is full.
+
+    CONSUMER -> func
+    Keep removing the elements from the buffer. 
+*/
+
+vector<int> incoming_data = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50};
+vector<int> buffer;
+const int MAX_BUFFER = 5;
 mutex mtx;
+condition_variable cv;
 
-shared_mutex s_mtx;
-int shared = 0;
-
-
-void reader(int id)
+void producer()
 {
-    shared_lock<shared_mutex> sl(s_mtx);
-    cout << "[Reader " << id << "] reading data: " << shared << endl;
+    for(int i=0; i<incoming_data.size(); i++)
+    {
+        // lock the buffer
+        unique_lock<mutex> uq_lock(mtx);
+
+        // check if the buffer is full
+        while(buffer.size() >= MAX_BUFFER)
+        {
+            // release the lock and wait untill the consumer notifies
+            cv.wait(uq_lock);
+        }
+        buffer.push_back(incoming_data[i]);
+        cout << "Producer: " << incoming_data[i] << endl;
+        
+        uq_lock.unlock(); // unlock the thread
+        cv.notify_all(); // tell comsumer that the new item is available
+        this_thread::sleep_for(chrono::seconds(2));
+    }
 }
 
-void writer(int id)
-{
-    unique_lock<shared_mutex> sl(s_mtx);
-    shared ++;
-    cout << "[Writer " << id << "] writing data: " << shared << endl;
+
+void consumer()
+{   
+    int consumed = 0;
+    int total_items = incoming_data.size();
+
+    while(consumed < total_items)
+    {
+        unique_lock<mutex>uq_lock(mtx); // lock the mutex
+        while(buffer.empty())
+        {
+            cv.wait(uq_lock); // unlock here and wait til producer sends signal
+        }
+        int item = buffer.front();  // get first item
+        buffer.erase(buffer.begin()); // remove the first item (FIFO)
+        cout << "consumer: " << item << endl;
+        consumed ++; // count the consumer
+
+        uq_lock.unlock(); // unlock the buffer
+        cv.notify_all(); // tell producer that the buffer has space
+        this_thread::sleep_for(chrono::seconds(2));
+    }
 }
 
 int main()
 {
-    thread r1(reader, 1);
-    thread r2(reader, 2);
-    thread r3(reader, 3);
-    thread w1(writer, 1);
+    thread t1(producer);
+    thread t2(consumer);
 
-    r1.join();
-    r2.join();
-    r3.join();
-    w1.join();
-
-    //cout << shared << endl;
+    t1.join();
+    t2.join();
+    
     return 0;
 }
-
 
