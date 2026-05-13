@@ -3,7 +3,8 @@
 #include<string>
 using namespace std;
 
-// new -> The new operator is an operator which denotes a request for memory allocation on the Heap. If sufficient memory is available, new operator initializes the memory and returns the address of the newly allocated and initialized memory to the pointer variable. 
+// new -> The new operator is an operator which denotes a request for memory allocation on the Heap. 
+//If sufficient memory is available, new operator initializes the memory and returns the address of the newly allocated and initialized memory to the pointer variable. 
 
 class vehicle
 {

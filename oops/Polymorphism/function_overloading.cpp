@@ -5,11 +5,11 @@ using namespace std;
     POLYMORPHISM -> simple means exists in more than one form. 
     The entity behaves differently at different scenarios
     
-    There are three ways you can achieve polymorphism
-    1. FUnction Overloading
-    2. Operator Overloading
-    3. Function Overriding
-    4. Virtual Functions 
+    There are Two types of polymorphism
+    1. COMPILE TIME                       2. RUNTIME
+        ->FUnction Overloading              -> Function Overriding
+        ->Operator Overloading              -> Virtual Functions   
+
 */
 
 /*

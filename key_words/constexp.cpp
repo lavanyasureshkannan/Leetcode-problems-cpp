@@ -23,6 +23,8 @@ using namespace std;
  3. It does not imply external linkage.	                   |        It implies external linkage.                                                                      |
 ***********************************************************|**********************************************************************************************************|
 */
+
+
 constexpr int add(int a, int b)
 {
     return (a+b);

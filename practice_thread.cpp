@@ -13,7 +13,7 @@ using namespace std;
     Mutex -> mutex is a synchronization primitive that is used to protect data from race condition.
     atomic -> Its a variable that you can use when you dont want to use mutex
     lock_guard -> Its a wrapper for mutex that gets 
-                  locked and unlocked automtatically when the onject goes out of scope.
+                  locked and unlocked automtatically when the object goes out of scope.
     unique_lock -> Its almost same as lock_guard except that you can manually lock, unlock, 
                   defer_lock, change ownership and all those.
     shared_lock -> Its a read only lock used with shared_mutex
@@ -23,8 +23,6 @@ using namespace std;
 
                         Lost wakeup – a notification arrives before the thread starts waiting.
                         Spurious wakeup – the thread wakes up without any notification.
-    
-
 */
 
 
