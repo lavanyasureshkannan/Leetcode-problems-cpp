@@ -277,3 +277,25 @@ void consumer()
         process(t);
     }
 }
+
+/****************************************************************************/
+std::mutex mtx;
+std::vector<Detection> detections;
+
+void pipeline_stage() 
+{
+    std::lock_guard<std::mutex> lock(mtx);  // locked here
+
+    // 1. Read sensor frame
+    auto frame = camera.get_frame();         // I/O — blocks
+
+    // 2. Run detection — 30ms GPU operation
+    auto dets = run_yolo(frame);             // slow compute
+
+    std::lock_guard<std::mutex> lock(mtx); 
+    // 3. Update shared detections
+    detections = dets;
+
+    // 4. Log results
+    std::cout << "detected: " << dets.size(); // I/O
+}

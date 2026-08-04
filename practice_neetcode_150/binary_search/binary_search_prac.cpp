@@ -65,33 +65,31 @@ int search_in_rotated_array(vector<int>& nums, int target)
 class TimeMap
 {
     public:
-    TimeMap() {};
-    unordered_map<string, vector<pair<string,int>>> mp; // key {value,timestamp}
-    void set(string key, string value, int timestamp)
+    TimeMap () {};
+    unordered_map<string, vector<pair<int,string>>> mp;
+    void set(string key, string value, int time)
     {
-        mp[key].emplace_back(value,timestamp);
+        mp[key].emplace_back(time,value);
     }
-    string get(string key, int timestamp)
+    string get(string key, int time)
     {
-        auto &values = mp[key];
+        auto &value = mp[key];
         int left = 0;
-        int right = values.size() - 1;
-        string result = " ";
+        int right = value.size() - 1;
+        string result = "";
         while(left <= right)
         {
-            int mid = left + (right - left)/2;
-            if(values[mid].second <= timestamp)
+            int mid = left + (right-left)/2;
+            if(value[mid].first <= time)
             {
-                result = values[mid].first;
+                result = value[mid].second;
                 left = mid + 1;
             }
-            else
-            {
-                right = mid - 1;
-            }
+            right = mid - 1;
         }
         return result;
     }
+
 };
 
 int main()

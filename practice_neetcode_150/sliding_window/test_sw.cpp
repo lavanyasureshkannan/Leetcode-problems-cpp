@@ -17,31 +17,8 @@ There may exists other ways to achieve this answer too.
 */
 
 
-// int longest_repeating(string s, int k)
-// {
-//     int freq[26] = {0};
-//     for(int i=0; i<s.size(); i++)
-//     {
-//         freq[s[i]] ++;
-//     } 
-
-// }
-
 int main()
 {
-    string s = "ABAB";
-    int k = 2;
-    int freq[26] = {0};
-    int maxi_freq = 0;
-    for(int i=0; i<s.size(); i++)
-    {
-        freq[s[i] - 'A'] ++;
-        maxi_freq = max(maxi_freq, freq[s[i] - 'A']);
-    } 
-    // for(int i=0; i<26; i++)
-    // {
-    //     cout << freq[i] << endl;
-    // }
-    cout << maxi_freq;
+
     return 0;
 }

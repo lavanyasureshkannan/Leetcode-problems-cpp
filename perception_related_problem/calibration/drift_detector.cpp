@@ -47,8 +47,6 @@ Driftdetector detect_drift(const vector<double>& errors, double threshold, int N
     return d;
 }
 
-
-
 int main()
 {
     vector<double>errors = {0.4, 0.5, 1.2, 1.3, 1.1, 0.4};

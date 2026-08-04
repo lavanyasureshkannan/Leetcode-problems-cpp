@@ -41,7 +41,8 @@ int subarray_optimised(vector<int>& nums, int k)
     for(int i=0; i<nums.size(); i++)
     {
         sum = sum + nums[i];
-        if(mp.count(sum-k)) // lets say if sum = 4 and if (sum - k) (4-3) = 1 which is already found in the map then the following array is subarray
+        if(mp.count(sum-k)) // lets say if sum = 4 and if (sum - k) (4-3) = 1 
+                            // which is already found in the map then the following array is subarray
         {
            result += mp[sum-k];
         }

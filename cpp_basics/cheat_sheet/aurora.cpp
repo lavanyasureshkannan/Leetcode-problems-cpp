@@ -287,3 +287,65 @@ class LRU_Cache{
             for (int j = 0; j < board[0].size(); j++) {
                 dfs(i, j, board, root, res);}}
         return res;}};
+
+//////////////////////////////////////////////////////////
+
+vector<int> num_of_visible_points(const vector<Tree>& points, double angle_rad, const vector<int>& location)
+{
+    // 1. convert all the points to angles
+    vector<pair<double, int>> angles;
+    angle_rad = angle_rad * M_PI / 180;
+
+    double x = location[0];
+    double y = location[1];
+    int same_points = 0;
+    for(auto i : points)
+    {
+        // atan2(y-y1, x-x1)
+        double x1 = i.x;
+        double y1 = i.y;
+        // edge case 1
+        if(x1==x && y1==y)
+        {
+            same_points ++;
+            continue;
+        }
+        double ang = atan2(y1-y, x1-x);
+        angles.push_back({ang, i.ID}); 
+    }
+
+    // 2. Sort all the angles
+    sort(angles.begin(), angles.end());
+
+    // edge case 2
+    int n = angles.size();
+    for(size_t i=0; i<n; i++)
+    {
+        angles.push_back({angles[i].first + 2 * M_PI, angles[i].second});
+    }
+    // 3. sliding window to get the maximum
+    int max_points = 0;
+    int best_left = 0;
+    int left = 0;
+    vector<int> results;
+    for(int right = 0; right < angles.size(); right++)
+    {
+        while((angles[right].first - angles[left].first) > angle_rad)
+        {
+            left ++;
+        }
+        int curr_points = right - left + 1;
+        if(curr_points > max_points)
+        {
+            best_left = left;
+            max_points = curr_points;
+        }
+        //max_points = max(max_points, right - left + 1);
+    }
+    for (size_t i = best_left; i < (best_left + max_points); i++)
+    {
+        results.push_back(angles[i].second);
+    }
+    return results;
+    //return max_points + same_points;
+}

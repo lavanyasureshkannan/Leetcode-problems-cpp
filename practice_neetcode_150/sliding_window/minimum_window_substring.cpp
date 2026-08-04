@@ -23,7 +23,7 @@ string min_window_substring(string s, string t)
     int min_len = INT_MAX;
     int have = 0;
     int need = target_freq.size();
-    int start =0 ;
+    int start = 0;
     
     unordered_map<char, int> window_freq;
     while(right < s.length())

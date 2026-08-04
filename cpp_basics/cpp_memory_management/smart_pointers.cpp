@@ -60,17 +60,17 @@ int main()
 
     /*******************************************************************************************/
     // SCENARIO 5
-    unique_ptr<int> m = make_unique<int> (12); 
-    cout << m.get() << endl;
-    {
-        unique_ptr<int> n = move(m);
-        cout << m.get() << endl;
-        cout << n.get() << endl;
-    }
-    cout << m.get() << endl; // here m still prints 0 because once the memory is moved it wont magically come back.
-    // now m is waiting for us to use reset and bring back alive
-    m.reset(new int(5)); 
-    cout << *m << endl;
-    cout << m.get() << endl;
+    // unique_ptr<int> m = make_unique<int> (12); 
+    // cout << m.get() << endl;
+    // {
+    //     unique_ptr<int> n = move(m);
+    //     cout << m.get() << endl;
+    //     cout << n.get() << endl;
+    // }
+    // cout << m.get() << endl; // here m still prints 0 because once the memory is moved it wont magically come back.
+    // // now m is waiting for us to use reset and bring back alive
+    // m.reset(new int(5)); 
+    // cout << *m << endl;
+    // cout << m.get() << endl;
     return 0;
 }

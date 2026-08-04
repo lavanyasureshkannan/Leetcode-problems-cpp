@@ -3,8 +3,6 @@
 #include <queue>
 using namespace std;
 
-
-
 /*
 Input: grid = [[1,1,0],[0,1,1],[0,1,2]]
 Output: 4
@@ -14,63 +12,50 @@ Output: 4
 2 representing a rotten fruit
 
 */
-
 int rotten_oranges(vector<vector<int>>& grid)
 {
+    // base case
+    if(grid.size() == 0) return 0;
     int fresh = 0;
+    int minutes = 0;
     queue<pair<int,int>> q;
-
-    int rows = grid.size();
-    int cols = grid[0].size();
-
-    for(int i=0; i<rows; i++)
+    for(size_t i = 0; i < grid.size(); i++)
     {
-        for(int j=0; j<cols; j++)
+        for(size_t j = 0; j < grid[0].size(); j++)
         {
-            if(grid[i][j] == 1)
+            if(grid[i][j] == 1) 
             {
                 fresh ++;
             }
-            if(grid[i][j] == 2)
+            else if(grid[i][j] == 2)
             {
                 q.push({i,j});
             }
         }
     }
-    int minutes = 0;
+    int rows = grid.size();
+    int cols = grid[0].size();
+    int dr[4] = {-1,1,0,0};
+    int dc[4] = {0,0,-1,1};
+
     while(!q.empty())
     {
-        for(int i=0; i<q.size(); i++)
+        int q_size = q.size();
+        for(size_t i =0; i<q_size; i++)
         {
-            auto [x,y] = q.front();
+            auto[r,c] = q.front();
             q.pop();
 
-            if((x-1) >= 0 && grid[x-1][y] == 1)
+            for(size_t i =0; i<4; i++)
             {
-                grid[x-1][y] = 2;
-                fresh --;
-                q.push({x-1,y});
-            }
-
-            if((x+1) < rows && grid[x+1][y] == 1)
-            {
-                grid[x+1][y] = 2;
-                fresh --;
-                q.push({x+1,y});
-            }
-            
-            if((y-1) >= 0 && grid[x][y-1] == 1)
-            {
-                grid[x][y-1] = 2;
-                fresh --;
-                q.push({x,y-1});
-            }
-            
-            if((y+1) < cols && grid[x][y+1] == 1)
-            {
-                grid[x][y+1] = 2;
-                fresh --;
-                q.push({x,y+1});
+                int nr = r + dr[i];
+                int nc = c + dc[i];
+                if(nr >=0 && nr < rows && nc >= 0 && nc < cols && grid[nr][nc] == 1)
+                {
+                    grid[nr][nc] = 2;
+                    fresh --;
+                    q.push({nr,nc});
+                }
             }
         }
         if(!q.empty())
@@ -82,6 +67,7 @@ int rotten_oranges(vector<vector<int>>& grid)
     else return -1;
 }
 
+// TC: O(MxN)
 int main()
 {
     vector<vector<int>> grid = {{1,1,0},

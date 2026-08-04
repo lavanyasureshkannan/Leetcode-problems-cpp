@@ -1,7 +1,6 @@
 def validate_calibration(errors: list):
     if not errors:
         return "no data"
-    
     avg = sum(errors) / len(errors)
     
     if avg < 0.5:

@@ -46,6 +46,8 @@ Deque front = 1 (value=3) → outside window → remove
 
 Deque now: [2,3] → front=2 (value=-1) → inside window → keep
 */
+
+
 vector<int> sliding_window_maxi(vector<int>& nums, int k)
 {
     vector<int> result;
@@ -71,6 +73,7 @@ vector<int> sliding_window_maxi(vector<int>& nums, int k)
     }
     return result;
 }
+
 
 int main()
 {

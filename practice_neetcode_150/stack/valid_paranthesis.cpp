@@ -21,7 +21,7 @@ bool valid_paranthesis(string s)
             if((c == ']') && (top !='[') ||
                 (c == '}') && (top !='{') ||
                 (c == ')') && (top !='(')) return false;
-            }
+        }
     }
     return st.empty();
 }
